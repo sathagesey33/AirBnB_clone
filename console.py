@@ -86,15 +86,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Prints all string representation of instances.
-        Usage: all [optional class name]
+            Prints all string representation of instances.
+            Usage: all [optional class name]
         """
         args = arg.split()
         if args and args[0]:
             try:
                 instances = storage.all()
                 filtered_instances = [str(val) for val in instances.values()
-                                           if val.__class__.__name__ == args[0]]
+                                      if val.__class__.__name__ == args[0]]
                 if not filtered_instances:
                     print("** class doesn't exist **")
                 else:
