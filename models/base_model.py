@@ -6,6 +6,8 @@ This module defines the BaseModel class.
 
 import uuid
 from datetime import datetime
+import models
+
 
 class BaseModel:
     """
@@ -36,11 +38,19 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def save(self):
+        """
+        Updates the 'updated_at' attribute with the current datetime.
+        """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
+        """
+        Returns a dictionary containing all keys of __dict__ of the instance.
+        """
         result = self.__dict__.copy()
         result['__class__'] = self.__class__.__name__
         result['created_at'] = self.created_at.isoformat()
@@ -48,5 +58,8 @@ class BaseModel:
         return result
 
     def __str__(self):
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-
+        """
+        Returns a string representation of the BaseModel instance.
+        """
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
