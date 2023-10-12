@@ -38,6 +38,10 @@ class FileStorage:
         """
         Deserializes the JSON file to __objects.
         """
+        classes = {
+            'User': User,  """ Add User class to the classes dictionary
+            """
+        
         try:
             with open(FileStorage.__file_path, 'r') as file:
                 obj_dict = json.load(file)
