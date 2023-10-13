@@ -3,9 +3,11 @@
 Console module for handling the command line interface.
 """
 
+from models.base_model import BaseModel
 import cmd
 from models import storage
 from models.user import User
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
@@ -54,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
                 key = "User." + user_id
                 if key in storage.all():
                     del storage.all()[key]
-                    storage.save()
+                    models.storage.save()
                 else:
                     print("** no instance found **")
 
@@ -85,11 +87,10 @@ class HBNBCommand(cmd.Cmd):
             elif len(arg_list) < 4:
                 print("** value missing **")
             else:
-                user_id = arg_list[1]
-                key = "User." + user_id
+                
                 if key in storage.all():
-                    setattr(storage.all()[key], arg_list[2], arg_list[3])
-                    storage.save()
+                    setattr(models.storage.all()[key], arg_list[2], arg_list[3])
+                    models.storage.save()
                 else:
                     print("** no instance found **")
 
@@ -108,4 +109,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-

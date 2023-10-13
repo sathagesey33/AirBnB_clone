@@ -5,7 +5,7 @@
 
 import json
 from models.base_model import BaseModel
-
+from models.user import User
 
 class FileStorage:
     __file_path = "file.json"
@@ -34,14 +34,11 @@ class FileStorage:
         with open(FileStorage.__file_path, 'w') as file:
             json.dump(obj_dict, file)
 
+
     def reload(self):
         """
         Deserializes the JSON file to __objects.
         """
-        classes = {
-            'User': User,  """ Add User class to the classes dictionary
-            """
-        
         try:
             with open(FileStorage.__file_path, 'r') as file:
                 obj_dict = json.load(file)
