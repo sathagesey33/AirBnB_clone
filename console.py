@@ -137,19 +137,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         except NameError:
             print("** class doesn't exist **")
-
-    def do_help(self, arg):
-        """
-        Show help message.
-        """
-        cmd.Cmd.do_help(self, arg)
-
-     def do_BaseModel(self, arg):
-        """
-        Docs
-        """
-        class_name = "BaseModel"
-        self.data_model_func(arg, class_name)
-
+      
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
