@@ -2,6 +2,7 @@
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """User class represents a registered user."""
 
@@ -12,4 +13,3 @@ class User(BaseModel):
 
     def _init_(self, *args, **kwargs):
         super()._init_(*args, **kwargs)
-
