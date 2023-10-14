@@ -8,6 +8,10 @@ from models.base_model import BaseModel
 from models.user import User
 
 class FileStorage:
+    classes = {
+    "BaseModel": BaseModel,
+    "User": User
+ }
     __file_path = "file.json"
     __objects = {}
 
