@@ -30,19 +30,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def default(self, line):
-        """Called when the command is not recognized."""
-        if line.startswith('create '):
-            self.do_create(line[7:])
-        elif line.startswith('show '):
-            self.do_show(line[5:])
-        elif line.startswith('destroy '):
-            self.do_destroy(line[8:])
-        elif line.startswith('all '):
-            self.do_all(line[4:])
-        else:
-            print(f"*** Unknown syntax: {line}")
-    
     def do_create(self, arg):
         """
         Create a new instance of BaseModel, save it, and print its id.
@@ -83,6 +70,8 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name and id.
         Usage: destroy <class name> <id>
         """
+        classes = [
+                "BaseModel"]
         args = arg.split()
         if not args:
             print("** class name missing **")
@@ -105,6 +94,8 @@ class HBNBCommand(cmd.Cmd):
             Prints all string representation of instances.
             Usage: all [optional class name]
         """
+        classes = [
+                "BaseModel"]
         args = arg.split()
         if args and args[0]:
             try:
@@ -126,6 +117,8 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class and id by updating an attribute
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
+        classes = [
+                "BaseModel"]
         args = arg.split()
         if not args:
             print("** class name missing **")
