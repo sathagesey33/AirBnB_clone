@@ -3,6 +3,7 @@
 import modules
 """
 
+import models
 from models.base_model import BaseModel
 import unittest
 from datetime import datetime
