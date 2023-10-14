@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+    CMD entrypoint program
+"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
