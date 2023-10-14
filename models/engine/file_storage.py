@@ -4,15 +4,15 @@
 """
 
 import json
+from os import path
 from models.base_model import BaseModel
 from models.user import User
 
 
 class FileStorage:
-    classes = {
-      "BaseModel": BaseModel,
-      "User": User
-              }
+    """
+        class storage
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -43,12 +43,8 @@ class FileStorage:
         """
         Deserializes the JSON file to __objects.
         """
-        try:
-            with open(FileStorage.__file_path, 'r') as file:
-                obj_dict = json.load(file)
-                for key, value in obj_dict.items():
-                    class_name, obj_id = key.split('.')
-                    self.new(eval(class_name)(**value))
-        except FileNotFoundError:
-            print("File not found.")
-            pass
+        if path.exists(self.__file_path):
+            with open(self.__file_path, mode='r', encoding='utf-8') as f:
+                json_dict = json.loads(f.read())
+                for key, value in json_dict.items():
+                    self.__objects[key] = eval(value['__class__'])(**value)
