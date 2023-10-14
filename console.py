@@ -30,6 +30,19 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def default(self, line):
+        """Called when the command is not recognized."""
+        if line.startswith('create '):
+            self.do_create(line[7:])
+        elif line.startswith('show '):
+            self.do_show(line[5:])
+        elif line.startswith('destroy '):
+            self.do_destroy(line[8:])
+        elif line.startswith('all '):
+            self.do_all(line[4:])
+        else:
+            print(f"*** Unknown syntax: {line}")
+    
     def do_create(self, arg):
         """
         Create a new instance of BaseModel, save it, and print its id.
