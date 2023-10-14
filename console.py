@@ -32,6 +32,12 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def do_help(self, line):
+        """
+        help manual
+        """
+        cmd.Cmd.do_help(self, line)
+
     def do_create(self, arg):
         """
         Create a new instance of BaseModel, save it, and print its id.
@@ -64,8 +70,6 @@ class HBNBCommand(cmd.Cmd):
             print(instances[key])
         except KeyError:
             print("** no instance found **")
-        except NameError:
-            print("** class doesn't exist **")
 
     def do_destroy(self, arg):
         """
@@ -79,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if len(args) < 2:
-            print("** instance id missing **")
+            print("** class doesn't exist **")
             return
         try:
             instances = models.storage.all()
@@ -88,8 +92,6 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
         except KeyError:
             print("** no instance found **")
-        except NameError:
-            print("** class doesn't exist **")
 
     def do_all(self, arg):
         """
