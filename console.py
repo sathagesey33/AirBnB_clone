@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         try:
-            instances = storage.all()
+            instances = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
             print(instances[key])
         except KeyError:
@@ -82,10 +82,10 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         try:
-            instances = storage.all()
+            instances = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
             del instances[key]
-            storage.save()
+            models.storage.save()
         except KeyError:
             print("** no instance found **")
         except NameError:
@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if args and args[0]:
             try:
-                instances = storage.all()
+                instances = models.storage.all()
                 filtered_instances = [str(val) for val in instances.values()
                                       if val.__class__.__name__ == args[0]]
                 if not filtered_instances:
@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
         else:
-            instances = storage.all()
+            instances = models.storage.all()
             print([str(val) for val in instances.values()])
 
     def do_update(self, arg):
@@ -135,12 +135,12 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         try:
-            instances = storage.all()
+            instances = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
             instance = instances.get(key)
             if instance:
                 setattr(instance, args[2], args[3].strip('\"'))
-                storage.save()
+                models.storage.save()
             else:
                 print("** no instance found **")
         except NameError:
