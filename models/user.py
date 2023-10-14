@@ -2,7 +2,6 @@
 """
     class user
 """
-
 from models.base_model import BaseModel
 
 
@@ -15,5 +14,6 @@ class User(BaseModel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
     def _init_(self, *args, **kwargs):
         super()._init_(*args, **kwargs)
