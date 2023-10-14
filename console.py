@@ -144,12 +144,6 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-    def do_help(self, arg):
-        """
-        Show help message.
-        """
-        cmd.Cmd.do_help(self, arg)
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
